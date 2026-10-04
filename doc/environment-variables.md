@@ -8,9 +8,14 @@ Below all the available environment variables will be described
 
 ## NETCONF_USERNAME
 - type string
+- NETCONF and SFTP username. SFTP configures this system account at container startup.
+- SFTP accepts only the configured account. The existing FTP account remains `netconf`; changing the SFTP username does not change the FTP allow-list.
+- The SFTP username starts with a lowercase letter, uses lowercase letters, digits, `_` or `-`, and is at most 32 characters. Apart from the existing `netconf` account, existing accounts must have a regular UID in the range 1000–65533.
 
 ## NETCONF_PASSWORD
 - type string
+- NETCONF and SFTP password. SFTP applies this password at container startup; empty values and line breaks are rejected.
+- FTP still authenticates the `netconf` system account. When `NETCONF_USERNAME` is changed, its build-time password `netconf!` remains valid for FTP; `NETCONF_PASSWORD` applies to the configured NETCONF/SFTP account. When the username remains `netconf`, the startup password update also changes that shared FTP account password.
 
 ## SDNR_RESTCONF_URL
 - type string

@@ -53,8 +53,7 @@ RUN \
   chown -R netconf /ftp && \
   mkdir /var/run/vsftpd && \
   mkdir /var/run/vsftpd/empty  && \
-  mkdir /run/sshd && \
-  echo "Match User netconf\n    ChrootDirectory /\n    X11Forwarding no\n    AllowTcpForwarding no\n    ForceCommand internal-sftp -d /ftp" >> /etc/ssh/sshd_config
+  mkdir /run/sshd
 
 COPY ./base/docker/conf/vsftpd.conf /etc/vsftpd.conf
 COPY ./base/docker/conf/vsftpd.userlist /etc/vsftpd.userlist
